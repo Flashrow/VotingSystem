@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The type Voter test.
+ *
  * @author Lukasz Goleniec
  * @version 1.1
  */

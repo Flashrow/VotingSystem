@@ -123,11 +123,13 @@ public class Voting {
     public void setDate(String dateStr) throws ParseException {
         try{
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
-
+            this.date = date;
         }catch(DateConversionException e){
             e.printStackTrace();
         }
-        this.date = date;
+       if(this.date == null){
+           this.date = new Date(System.currentTimeMillis());
+       }
     }
 
     /**

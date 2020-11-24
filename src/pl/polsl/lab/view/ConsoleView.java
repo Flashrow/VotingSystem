@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * The type Console view.
+ *
  * @author Lukasz Goleniec
  * @version 1.1
  */
@@ -89,5 +90,14 @@ public class ConsoleView {
         System.out.println();
         System.out.println();
         System.out.println("Symulacja glosowania");
+    }
+
+    /**
+     * Voted out message.
+     */
+    public void votedOutMessage(){
+        System.out.println();
+        System.out.println();
+        System.out.println("Głosowania, które zdobyły większość głosów za: ");
     }
 }

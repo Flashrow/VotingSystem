@@ -4,6 +4,8 @@ import pl.polsl.lab.exceptions.VotingsListException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The type Votings list.
@@ -19,7 +21,7 @@ public class VotingsList {
      */
     public VotingsList(){
         votings = new ArrayList<Voting>();
-    };
+    }
 
     /**
      * Instantiates a new Votings list.
@@ -101,5 +103,17 @@ public class VotingsList {
         }else{
             return false;
         }
+    }
+
+    /**
+     * Finds voted out votings
+     *
+     * @return List of votings that have more votes for than against
+     */
+    public List<Voting> getVotedOut(){
+        List<Voting> votedOut = this.votings.stream()
+                .filter(v -> v.getVotesFor() > v.getVotesAgainst())
+                .collect(Collectors.toList());
+        return votedOut;
     }
 }

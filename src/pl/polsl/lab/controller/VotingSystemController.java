@@ -121,6 +121,7 @@ public class VotingSystemController {
                 case 3: addNewVoting(); break;
                 case 4: addNewVoter(); break;
                 case 5: simulateVoting(); break;
+                case 6: showVotedOutVotings(); break;
                 case 9: exit = true;
                 default:;
             }
@@ -136,7 +137,7 @@ public class VotingSystemController {
     private int getMenuOption() throws MenuInputException {
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
-            if(!((option<6 && option > 0)||option==9)){
+            if(!((option<7 && option > 0)||option==9)){
                 throw new MenuInputException("Nieprawidłowy numer opcji");
         }
             return option;
@@ -204,6 +205,11 @@ public class VotingSystemController {
         System.out.println("Dodawany(a): " + newVoter.getName() + " " + newVoter.getLastname());
         if(!(name.isEmpty() || lastName.isEmpty()))
         votersList.addVoter(newVoter);
+    }
+
+    private void showVotedOutVotings(){
+        consoleView.votedOutMessage();
+        consoleView.printVotingList(votingsList.getVotedOut());
     }
 
     /**
