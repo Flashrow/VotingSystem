@@ -16,10 +16,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- *   The type Voting system controller. Managing all the system
+ * The type Voting system controller. Managing all the system
  *
- *   @author Lukasz Goleniec
- *   @version 1.0
+ * @author Lukasz Goleniec
+ * @version 1.1
  */
 public class VotingSystemController {
     private VotingsList votingsList;
@@ -30,20 +30,32 @@ public class VotingSystemController {
     private String path_to_votings ="";
 
 
+    /**
+     * Instantiates a new Voting system controller.
+     */
     public VotingSystemController(){};
 
+    /**
+     * Instantiates a new Voting system controller.
+     *
+     * @param path_to_voters  the path to voters textfile
+     * @param path_to_votings the path to votings textfile
+     */
     public VotingSystemController(String path_to_voters, String path_to_votings){
-        if(path_to_voters != ""){
+        if(!path_to_voters.equals("")){
             this.path_to_voters = path_to_voters;
         }
-        if(path_to_votings != ""){
+        if(!path_to_votings.equals("")){
             this.path_to_votings = path_to_votings;
         }
-        if(this.path_to_votings != "" && this.path_to_voters != ""){
+        if(!this.path_to_votings.equals("") && !this.path_to_voters.equals("")){
             initFromFiles();
         }
     }
 
+    /**
+     * Initializes voting and voters lists with passed textfiles if exists, parsing is safe.
+     */
     private void initFromFiles(){
         List<String> votingsRecords = new ArrayList<String>();
         List<String> votersRecords = new ArrayList<String>();

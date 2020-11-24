@@ -7,8 +7,9 @@ import java.util.List;
 
 /**
  * The type Votings list.
- *   @author Lukasz Goleniec
- *   @version 1.0
+ *
+ * @author Lukasz Goleniec
+ * @version 1.1
  */
 public class VotingsList {
     private List<Voting> votings;
@@ -62,6 +63,7 @@ public class VotingsList {
      *
      * @param votingID the voting id
      * @return the voting
+     * @throws VotingsListException the votings list exception
      */
     public Voting findVotingByID(int votingID) throws VotingsListException {
         if(votingID < 0){

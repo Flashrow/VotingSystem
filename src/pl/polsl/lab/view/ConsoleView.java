@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * The type Console view.
- *  *   @author Lukasz Goleniec
- *  *   @version 1.0
+ * @author Lukasz Goleniec
+ * @version 1.1
  */
 public class ConsoleView {
     /**

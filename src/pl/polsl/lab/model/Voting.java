@@ -1,18 +1,23 @@
 package pl.polsl.lab.model;
 
+import pl.polsl.lab.exceptions.DateConversionException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * The type Voting.
- *   @author Lukasz Goleniec
- *   @version 1.0
+ *
+ * @author Lukasz Goleniec
+ * @version 1.1
  */
 public class Voting {
     private int votingID;
     private String topic;
-    private String date;
+    private Date date;
     private int votesFor;
     private int votesAgainst;
     private List<Voter> votersFor;
@@ -34,9 +39,13 @@ public class Voting {
      * @param topic Voting topic
      * @param date  Voting date
      */
-    public Voting(String topic, String date) {
+    public Voting(String topic, String date){
         this.topic = topic;
-        this.date = date;
+        try {
+            this.setDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         votersFor = new ArrayList<>();
         votersAgainst = new ArrayList<>();
         votingPermission = VotingPermission.MEDIUM;
@@ -101,16 +110,32 @@ public class Voting {
      *
      * @return the voting date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     /**
      * Sets date.
      *
-     * @param date the voting date
+     * @param dateStr the voting date
+     * @throws ParseException the parse exception
      */
-    public void setDate(String date) {
+    public void setDate(String dateStr) throws ParseException {
+        try{
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
+
+        }catch(DateConversionException e){
+            e.printStackTrace();
+        }
+        this.date = date;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param date the date
+     */
+    public void setDate(Date date){
         this.date = date;
     }
 
@@ -214,5 +239,23 @@ public class Voting {
     public void addVoterAgainst(Voter voterAgainst){
         this.votersAgainst.add(voterAgainst);
         this.bumpVotesAgainst();
+    }
+
+    /**
+     * Gets voting permission.
+     *
+     * @return the voting permission
+     */
+    public VotingPermission getVotingPermission() {
+        return votingPermission;
+    }
+
+    /**
+     * Sets voting permission.
+     *
+     * @param votingPermission the voting permission
+     */
+    public void setVotingPermission(VotingPermission votingPermission) {
+        this.votingPermission = votingPermission;
     }
 }

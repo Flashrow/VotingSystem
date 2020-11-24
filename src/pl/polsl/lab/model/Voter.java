@@ -2,16 +2,21 @@ package pl.polsl.lab.model;
 
 /**
  * Class representing voter, has name and lastname
- *   @author Lukasz Goleniec
- *   @version 1.0
+ *
+ * @author Lukasz Goleniec
+ * @version 1.1
  */
-
 public class Voter {
     private static Integer IDcounter = 0;
     private String name;
     private String lastname;
     private VotingPermission votingPermission;
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public Integer getID() {
         return ID;
     }
@@ -73,5 +78,23 @@ public class Voter {
      */
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    /**
+     * Gets voting permission.
+     *
+     * @return the voting permission
+     */
+    public VotingPermission getVotingPermission() {
+        return votingPermission;
+    }
+
+    /**
+     * Sets voting permission.
+     *
+     * @param votingPermission the voting permission
+     */
+    public void setVotingPermission(VotingPermission votingPermission) {
+        this.votingPermission = votingPermission;
     }
 }

@@ -2,8 +2,9 @@ package pl.polsl.lab.exceptions;
 
 /**
  * The type Menu input exception.
- *   @author Lukasz Goleniec
- *   @version 1.0
+ *
+ * @author Lukasz Goleniec
+ * @version 1.0
  */
 public class MenuInputException extends Exception {
     /**

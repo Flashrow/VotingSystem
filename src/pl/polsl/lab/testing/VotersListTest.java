@@ -7,14 +7,26 @@ import pl.polsl.lab.model.VotersList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Voters list test.
+ */
 class VotersListTest {
+    /**
+     * The V list.
+     */
     VotersList vList;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
     vList = new VotersList();
     }
 
+    /**
+     * Test voters with same id.
+     */
     @Test
     void testVotersWithSameID() {
         Integer number = 100;
@@ -33,8 +45,16 @@ class VotersListTest {
         }
     }
 
+    /**
+     * Test adding null voters.
+     */
     @Test
-    void testSettingEmptyVoters(){
-        fail("Not yet implemented");
+    void testAddingNullVoters(){
+        try{
+            vList.addVoter(null);
+            fail("Adding null voter should throw an exception");
+        }catch(Exception e){
+
+        }
     }
 }

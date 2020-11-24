@@ -7,15 +7,26 @@ import pl.polsl.lab.model.VotingsList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Votings list test.
+ * @author Lukasz Goleniec
+ * @version 1.1
+ */
 class VotingsListTest {
 
     private VotingsList vList;
 
+    /**
+     * Initializes test vList with empty new VotingList
+     */
     @org.junit.jupiter.api.BeforeEach
     public void setUp() {
         vList = new VotingsList();
     }
 
+    /**
+     * Test finding voting with negative id.
+     */
     @org.junit.jupiter.api.Test
     public void testFindingWithNegativeID() {
         try{
@@ -25,6 +36,9 @@ class VotingsListTest {
         }
     }
 
+    /**
+     * Test finding voting with bad id.
+     */
     @org.junit.jupiter.api.Test
     public void testFindingWithBadID() {
         try{
@@ -34,6 +48,9 @@ class VotingsListTest {
         }
     }
 
+    /**
+     * Update voting with null.
+     */
     @org.junit.jupiter.api.Test
     public void updateVotingWithNull() {
         try{
@@ -43,11 +60,9 @@ class VotingsListTest {
         }
     }
 
-    @Test
-    public void updateVotingWithBadFields(){
-        fail("not yet implemented");
-    }
-
+    /**
+     * Add voting id test. Tests if IDs are set properly
+     */
     @Test
     void addVotingIDTest() {
     VotingsList testList = new VotingsList();
