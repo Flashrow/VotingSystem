@@ -51,6 +51,12 @@ public class Voting {
         votingPermission = VotingPermission.MEDIUM;
     }
 
+    public Voting(String topic, Date date){
+        this.topic = topic;
+        this.date = date;
+        this.votingPermission = VotingPermission.MEDIUM;
+    }
+
     /**
      * Gets voters for.
      *

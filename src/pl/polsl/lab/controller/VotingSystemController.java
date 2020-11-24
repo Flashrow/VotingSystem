@@ -42,15 +42,17 @@ public class VotingSystemController {
      * @param path_to_votings the path to votings textfile
      */
     public VotingSystemController(String path_to_voters, String path_to_votings){
+        consoleView = new ConsoleView();
+        votingsList = new VotingsList();
+        votersList = new VotersList();
+
         if(!path_to_voters.equals("")){
             this.path_to_voters = path_to_voters;
         }
         if(!path_to_votings.equals("")){
             this.path_to_votings = path_to_votings;
         }
-        if(!this.path_to_votings.equals("") && !this.path_to_voters.equals("")){
-            initFromFiles();
-        }
+        initFromFiles();
     }
 
     /**
@@ -59,37 +61,42 @@ public class VotingSystemController {
     private void initFromFiles(){
         List<String> votingsRecords = new ArrayList<String>();
         List<String> votersRecords = new ArrayList<String>();
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader(path_to_votings));
-            String line;
-            while((line = reader.readLine())!=null){
-                votingsRecords.add(line);
+        if(!path_to_votings.equals("")){
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader(path_to_votings));
+                String line;
+                while((line = reader.readLine())!=null){
+                    votingsRecords.add(line);
+                }
+                reader.close();
+            }catch(Exception e){
+                System.out.println("Nie udało się odczytać pliku z głosowaniami");
             }
-            reader.close();
-        }catch(Exception e){
-            System.out.println("Nie udało się odczytać pliku z głosowaniami");
-        }
-
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader(path_to_voters));
-            String line;
-            while((line = reader.readLine())!=null){
-                votersRecords.add(line);
-            }
-            reader.close();
-        }catch(Exception e){
-            System.out.println("Nie udało się odczytać pliku z głosującymi");
-        }
-
-        if(votingsRecords.size()>1){
-            for(int i = 0; i<votingsRecords.size(); i+=2){
-                votingsList.addVoting(new Voting(votingsRecords.get(i),votingsRecords.get(i+1)));
+            if(votingsRecords.size()>1){
+                for(int i = 0; i<votingsRecords.size(); i+=2){
+                    System.out.println(i);
+                    System.out.println("#" + votingsRecords.get(i) + "#" + " " + "#" + votingsRecords.get(i+1) + "#");
+                    Voting newVoting = new Voting(votingsRecords.get(i),votingsRecords.get(i+1));
+                    this.votingsList.addVoting(newVoting);
+                }
             }
         }
 
-        if(votersRecords.size()>1){
-            for(int i = 0; i<votersRecords.size(); i+=2){
-                votersList.addVoter(new Voter(votersRecords.get(i), votersRecords.get(i+1)));
+        if(!path_to_voters.equals("")){
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader(path_to_voters));
+                String line;
+                while((line = reader.readLine())!=null){
+                    votersRecords.add(line);
+                }
+                reader.close();
+            }catch(Exception e){
+                System.out.println("Nie udało się odczytać pliku z głosującymi");
+            }
+            if(votersRecords.size()>1){
+                for(int i = 0; i<votersRecords.size(); i+=2){
+                    votersList.addVoter(new Voter(votersRecords.get(i), votersRecords.get(i+1)));
+                }
             }
         }
     }
@@ -98,10 +105,6 @@ public class VotingSystemController {
      * Run voting system app. Contains main while loop.
      */
     public void runVotingSystemApp(){
-        consoleView = new ConsoleView();
-        votingsList = new VotingsList();
-        votersList = new VotersList();
-
         consoleView.welcomeMessage();
         while(!exit){
             consoleView.printMenu();
