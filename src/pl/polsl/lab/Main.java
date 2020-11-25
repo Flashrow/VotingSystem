@@ -1,8 +1,12 @@
 package pl.polsl.lab;
 
 import pl.polsl.lab.controller.VotingSystemController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import javax.swing.*;
 
 /**
  * The type Main.
@@ -10,7 +14,7 @@ import javax.swing.*;
  * @author Lukasz Goleniec
  * @version 1.1
  */
-public class Main {
+public class Main extends Application{
     /**
      * The entry point of application.
      *
@@ -21,6 +25,8 @@ public class Main {
      *             order of arguments does not matter
      */
     public static void main(String[] args) {
+        launch();
+
         String pathToVoters = "";
         String pathToVotings = "";
 
@@ -47,5 +53,13 @@ public class Main {
 
         VotingSystemController systemController = new VotingSystemController(pathToVoters, pathToVotings);
         systemController.runVotingSystemApp();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("view/mainScreen.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
     }
 }
