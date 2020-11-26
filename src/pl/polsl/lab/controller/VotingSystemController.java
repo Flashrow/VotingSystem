@@ -1,5 +1,9 @@
 package pl.polsl.lab.controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import pl.polsl.lab.exceptions.MenuInputException;
 import pl.polsl.lab.exceptions.VotingsListException;
 import pl.polsl.lab.model.Voter;
@@ -10,6 +14,7 @@ import pl.polsl.lab.view.ConsoleView;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -104,8 +109,26 @@ public class VotingSystemController {
     /**
      * Run voting system app. Contains main while loop.
      */
-    public void runVotingSystemApp(){
+    public void runVotingSystemApp() throws IOException {
         consoleView.welcomeMessage();
+
+        System.out.println("loading fxm");
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "view/mainScreen.fxml"
+                )
+        );
+        System.out.println("creating stage");
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(
+                new Scene(loader.load())
+        );
+
+        MainScreenController controller = loader.getController();
+        controller.initData(votingsList);
+
+        stage.show();
+
         while(!exit){
             consoleView.printMenu();
 
