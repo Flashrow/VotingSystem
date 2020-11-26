@@ -112,23 +112,6 @@ public class VotingSystemController {
     public void runVotingSystemApp() throws IOException {
         consoleView.welcomeMessage();
 
-        System.out.println("loading fxm");
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "view/mainScreen.fxml"
-                )
-        );
-        System.out.println("creating stage");
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(
-                new Scene(loader.load())
-        );
-
-        MainScreenController controller = loader.getController();
-        controller.initData(votingsList);
-
-        stage.show();
-
         while(!exit){
             consoleView.printMenu();
 

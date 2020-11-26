@@ -28,6 +28,7 @@ public class Main extends Application{
      *             order of arguments does not matter
      */
     public static void main(String[] args) throws IOException {
+        launch();
 
         String pathToVoters = "";
         String pathToVotings = "";
@@ -52,6 +53,7 @@ public class Main extends Application{
                 }
             }
         }
+
 
         VotingSystemController systemController = new VotingSystemController(pathToVoters, pathToVotings);
         systemController.runVotingSystemApp();
