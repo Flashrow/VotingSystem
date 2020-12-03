@@ -7,7 +7,7 @@ import java.util.List;
  * The type Voters list.
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class VotersList {
     /**

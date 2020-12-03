@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.polsl.lab.controller.MainScreenController">
+   <children>
+      <Label layoutX="14.0" layoutY="23.0" prefHeight="17.0" prefWidth="100.0" text="Lista głosowań" />
+      <Button fx:id="addVotingBtn" layoutX="471.0" layoutY="175.0" mnemonicParsing="false" onAction="#addVoting" prefHeight="25.0" prefWidth="115.0" text="Dodaj głosowanie" />
+      <Button fx:id="simulateBtn" layoutX="208.0" layoutY="361.0" mnemonicParsing="false" onAction="#simulateVoting" prefHeight="25.0" prefWidth="188.0" text="Symuluj głosowanie" />
+      <Button fx:id="deleteVotingBtn" layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#deleteVoting" text="Usuń głosowanie" />
+      <Button fx:id="showDetailsBtn" layoutX="243.0" layoutY="175.0" mnemonicParsing="false" text="Wyświetl szczegóły" />
+      <TableView fx:id="votingsTableView" layoutX="14.0" layoutY="40.0" prefHeight="131.0" prefWidth="572.0">
+        <columns>
+          <TableColumn fx:id="votingsTableTopic" prefWidth="262.0" text="Temat" />
+          <TableColumn fx:id="votingsTableDate" prefWidth="213.0" text="Data" />
+            <TableColumn fx:id="votingsTableFor" prefWidth="45.0" text="Za" />
+            <TableColumn fx:id="votingsTableAgainst" prefWidth="51.0" text="Przeciw" />
+        </columns>
+      </TableView>
+      <Label layoutX="243.0" layoutY="306.0" text="Ilość głosujących:" />
+      <Label fx:id="votersNumberLabel" layoutX="346.0" layoutY="306.0" text="0" />
+   </children>
+</AnchorPane>

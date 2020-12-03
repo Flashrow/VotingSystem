@@ -4,7 +4,7 @@ package pl.polsl.lab.model;
  * Class representing voter, has name and lastname
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class Voter {
     private static Integer IDcounter = 0;

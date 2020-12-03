@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * The type Votings list.
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class VotingsList {
     private List<Voting> votings;
@@ -58,6 +58,29 @@ public class VotingsList {
     public void addVoting(Voting voting){
         voting.setVotingID(this.votings.size()+1);
         votings.add(voting);
+    }
+
+    /**
+     * Delete voting.
+     *
+     * @param votingID the voting id
+     */
+    public void deleteVoting(int votingID){
+        try {
+            votings.remove(findVotingByID(votingID));
+        } catch (VotingsListException e) {
+            System.out.println("Nie udało się znaleźć głosowania po ID");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Delete voting.
+     *
+     * @param voting the voting
+     */
+    public void deleteVoting(Voting voting){
+        votings.remove(voting);
     }
 
     /**

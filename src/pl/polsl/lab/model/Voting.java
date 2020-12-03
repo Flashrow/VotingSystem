@@ -12,7 +12,7 @@ import java.util.List;
  * The type Voting.
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class Voting {
     private int votingID;
@@ -51,9 +51,17 @@ public class Voting {
         votingPermission = VotingPermission.MEDIUM;
     }
 
+    /**
+     * Instantiates a new Voting.
+     *
+     * @param topic the topic
+     * @param date  the date
+     */
     public Voting(String topic, Date date){
         this.topic = topic;
         this.date = date;
+        votersFor = new ArrayList<>();
+        votersAgainst = new ArrayList<>();
         this.votingPermission = VotingPermission.MEDIUM;
     }
 

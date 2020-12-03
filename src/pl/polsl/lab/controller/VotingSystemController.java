@@ -24,7 +24,7 @@ import java.util.Scanner;
  * The type Voting system controller. Managing all the system
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class VotingSystemController {
     private VotingsList votingsList;
@@ -45,11 +45,13 @@ public class VotingSystemController {
      *
      * @param path_to_voters  the path to voters textfile
      * @param path_to_votings the path to votings textfile
+     * @param votingsList     the votings list
+     * @param votersList      the voters list
      */
-    public VotingSystemController(String path_to_voters, String path_to_votings){
+    public VotingSystemController(String path_to_voters, String path_to_votings, VotingsList votingsList, VotersList votersList){
         consoleView = new ConsoleView();
-        votingsList = new VotingsList();
-        votersList = new VotersList();
+        this.votingsList = votingsList;
+        this.votersList =  votersList;
 
         if(!path_to_voters.equals("")){
             this.path_to_voters = path_to_voters;
@@ -108,6 +110,8 @@ public class VotingSystemController {
 
     /**
      * Run voting system app. Contains main while loop.
+     *
+     * @throws IOException the io exception
      */
     public void runVotingSystemApp() throws IOException {
         consoleView.welcomeMessage();

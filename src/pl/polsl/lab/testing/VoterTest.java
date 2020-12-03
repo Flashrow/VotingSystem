@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The type Voter test.
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 class VoterTest {
     /**

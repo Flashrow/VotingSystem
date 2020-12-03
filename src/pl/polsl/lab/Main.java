@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.polsl.lab.model.VotersList;
+import pl.polsl.lab.model.VotingsList;
 
 import java.io.IOException;
 
@@ -15,21 +17,23 @@ import java.io.IOException;
  * The type Main.
  *
  * @author Lukasz Goleniec
- * @version 1.1
+ * @version 2.0
  */
 public class Main extends Application{
+    private MainScreenController mainScreenController;
+    private VotingSystemController systemController;
+    private VotingsList votingsList;
+    private VotersList votersList;
+    private String pathToVoters ="";
+    private String pathToVotings ="";
+
     /**
      * The entry point of application.
      *
-     * @param args the input arguments, available arguments for user are:
-     *             -voters path_to_textfile
-     *             -votings path_to_textfile
-     *             (example: -voters C:\Docs\test.txt)
-     *             order of arguments does not matter
+     * @param args the input arguments, available arguments for user are:             -voters path_to_textfile             -votings path_to_textfile             (example: -voters C:\Docs\test.txt)             order of arguments does not matter
+     * @throws IOException the io exception
      */
     public static void main(String[] args) throws IOException {
-        launch();
-
         String pathToVoters = "";
         String pathToVotings = "";
 
@@ -44,8 +48,6 @@ public class Main extends Application{
             }
             if(args[i].equals("-votings")){
                 try{
-                    System.out.println("Dodaje głosowanie z pliku: " + args[i+1]);
-
                     pathToVotings = args[i+1];
                     i++;
                 }catch(Exception e){
@@ -54,16 +56,27 @@ public class Main extends Application{
             }
         }
 
-
-        VotingSystemController systemController = new VotingSystemController(pathToVoters, pathToVotings);
-        systemController.runVotingSystemApp();
+        launch();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/mainScreen.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 900, 400));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainScreen.fxml"));
+        Parent root = loader.load();
+        primaryStage.setTitle("System Głosowania");
+        primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
+
+        votingsList = new VotingsList();
+        votersList = new VotersList();
+
+        mainScreenController = (MainScreenController) loader.getController();
+        mainScreenController.setVotersList(votersList);
+        mainScreenController.setVotingsList(votingsList);
+
+        mainScreenController.runView();
+
+        systemController = new VotingSystemController(pathToVoters, pathToVotings, votingsList, votersList);
+        //systemController.runVotingSystemApp();
     }
 }
